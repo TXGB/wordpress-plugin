@@ -8,7 +8,7 @@ Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Connect your Wordpress site to the Tourism Exchange Great Britain API. Import and enhance your content, show availabilities, and offer bookings.
 
 == Description ==
 
