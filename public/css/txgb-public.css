@@ -1,0 +1,240 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.txgb__label, .txgb__venue-search__label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.txgb__select {
+  border: 2px solid #666;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 10px 30px 10px 16px;
+}
+
+.txgb__input {
+  border: 2px solid #666;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 10px 16px;
+}
+
+.txgb__booking-container {
+  padding: 40px;
+}
+
+.txgb__booking-bg {
+  background-color: #fff;
+}
+
+.txgb__title {
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+.txgb__availability-product {
+  border-bottom: 1px solid #eee;
+  font-size: 20px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.txgb__availability-product__inner {
+  display: flex;
+}
+
+.txgb__availability-product__info {
+  flex: 1 1 auto;
+}
+
+.txgb_availability-product__images {
+  flex: none;
+  margin-right: 1.5rem;
+  order: -1;
+  width: 25%;
+}
+
+.txgb_availability-product__image_list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-flow: column;
+}
+
+.txgb_availability-product__image {
+  width: 100%;
+}
+
+.txgb__availability-product__booking {
+  align-items: center;
+  flex: none;
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: reverse;
+}
+
+.txgb__availability-product__rates {
+  display: flex;
+  margin-right: auto;
+  font-size: 16px;
+}
+
+.txgb__availability-product__rates dt::after {
+  content: ':';
+}
+
+.txgb__availability-product__rates dd {
+  margin-left: 0.5em;
+  margin-right: 0.75em;
+  padding-left: 0;
+}
+
+.txgb__availability-product__book-button {
+  background-color: #000;
+  color: #fff;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 14px 20px;
+}
+
+.txgb__availability-product__title {
+  font-size: 28px;
+  margin-bottom: 0.5rem;
+}
+
+.txgb__availability-product__dates {
+  font-size: 16px;
+}
+
+.txgb__availability-product__meta {
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 20px;
+  display: flex;
+  padding-top: 12px;
+}
+
+.txgb__availability-product__nights {
+  margin-right: 1.5em;
+}
+
+.txgb__availability-product__price {
+  font-weight: bold;
+}
+
+.txgb__booking {
+  display: flex;
+}
+
+.txgb__booking-details {
+  flex-grow: 1;
+  padding-right: 60px;
+}
+
+.txgb__booking-section {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+.txgb__booking-section__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.txgb__venue-search, .txgb__venues-search {
+  border: 2px solid #444;
+  padding: 30px;
+}
+
+.txgb__venue-search__title {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.txgb__venue-search__fields {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.txgb__venue-search__fields+.txgb__venue-search__fields {
+  margin-top: 1.5rem;
+}
+
+.txgb__venue-search__date, .txgb__venue-search__people {
+  display: flex;
+}
+
+.txgb__venue-search__city+.txgb__venue-search__date, .txgb__venue-search__city, .txgb__venue-search__people {
+  margin-left: 1.5rem;
+}
+
+.txgb__venues-search .txgb__venue-search__people {
+  flex: none;
+  margin-left: 0;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.txgb__venue-search__people input {
+  max-width: 6em !important;
+}
+
+.txgb__venue-search__button {
+  margin-left: auto;
+}
+
+.txgb__availability-product--default .txgb__availability-product__booking_actions {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.txgb__availability-product--default .txgb__availability-product__booking_action {
+  align-items: stretch;
+  display: flex;
+}
+
+.txgb__availability-product--default .txgb__availability-product__book-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.txgb__availability-product--default .txgb__availability-product__book-button .txgb__availability-product__book-button__text {
+  display: none;
+}
+
+.txgb__availability-product--default .txgb__availability-product__book-button--disabled {
+  cursor: not-allowed;
+}
+
+.txgb__availability-product--default .txgb__availability-product__book-button--disabled .txgb__availability-product__book-button__text {
+  display: inline-block;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
