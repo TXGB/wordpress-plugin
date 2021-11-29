@@ -83,17 +83,20 @@ class TXGB_API_Entity extends TXGB_API
 	 */
 	public function get_all_services(string $type = '', string $query = '')
 	{
-		$query = new TXGB_API_Service_Query($this->short_name);
-		$query->sort_by('Name', 'Ascending')->with_short_content();
+		$query = (new TXGB_API_Service_Query($this->short_name))
+			->sort_by('Name', 'Ascending')
+			->with_provider()
+			->with_short_content();
 		$args = $query->to_request_args();
 
 		$services = array();
 		try {
 			$response = $this->client->search($args);
 			$rawServices = $response->EntitySearch_RS->Entities;
+			$rawProviders = $response->EntitySearch_RS->Parents->ParentEntity;
 
 			foreach ($rawServices->Entity as $rawService) {
-				$services[] = TXGB_Object_Service::make_from_response($rawService);
+				$services[] = TXGB_Object_Service::make_from_response($rawService, $rawProviders);
 			}
 		} catch (Exception $e) {
 			txgb_handle_exception($e);

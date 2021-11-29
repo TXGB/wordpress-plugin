@@ -49,7 +49,6 @@ if (!$services) {
 }
 
 // Check for previously-imported posts
-
 $service_list_table = new Service_List_Table();
 $service_list_table->items = $services;
 $service_list_table->prepare_items();
