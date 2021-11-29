@@ -3,8 +3,8 @@ $starts_at = array_key_exists('starts_at', $_REQUEST) ? $_REQUEST['starts_at'] :
 $ends_at = array_key_exists('ends_at', $_REQUEST) ? $_REQUEST['ends_at'] : '';
 
 $adults = array_key_exists('adults', $_REQUEST) ? $_REQUEST['adults'] : 1;
-$children = array_key_exists('children', $_REQUEST) ? $_REQUEST['children'] : 1;
-$concessions = array_key_exists('concessions', $_REQUEST) ? $_REQUEST['concessions'] : 1;
+$children = array_key_exists('children', $_REQUEST) ? $_REQUEST['children'] : 0;
+$concessions = array_key_exists('concessions', $_REQUEST) ? $_REQUEST['concessions'] : 0;
 
 $min_date = (new DateTime())->sub(new DateInterval('P1D'))->format('Y-m-d');
 ?>
