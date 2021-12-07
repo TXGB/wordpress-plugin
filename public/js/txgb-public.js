@@ -33,10 +33,9 @@
     var $dateContainers = $('.js-txgb__has-dates');
     if ($dateContainers.length) {
       $dateContainers.each(function (i, $dateContainer) {
-        var $from = $dateContainers.find('input[name="starts_at"]');
         var $to = $dateContainers.find('input[name="ends_at"]');
 
-        $($dateContainer).on('change', $from, function (event) {
+        $($dateContainer).on('change', 'input[name="starts_at"]', function (event) {
           var value = event.target.value;
           var dateValue = new Date(value);
 
