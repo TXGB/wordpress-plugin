@@ -54,6 +54,7 @@ class TXGB_API_Search extends TXGB_API
 				break;
 
 			case 'Activity':
+			case 'Epicurean':
 			case 'Tour':
 				$category_group = 'Activities';
 				break;
@@ -114,14 +115,15 @@ class TXGB_API_Search extends TXGB_API
 			->for_distributor($credentials->short_name, $credentials->key)
 			->with_products()
 			->to_request_args();
-
+		var_dump('REQUEST: ' . json_encode($request, JSON_PRETTY_PRINT));
 		try {
 			$response = $this->client->ProviderSearch($request);
+			var_dump('RESPONSE: ' . json_encode($response, JSON_PRETTY_PRINT));
 
 			if ($response && property_exists($response->Status, 'Success')) {
 				$channel = $response->Channels->Channel;
-
-				if (property_exists($channel, 'Providers')) {
+				var_dump('CHANNEL: ' . json_encode($channel, JSON_PRETTY_PRINT));
+				if (property_exists($channel, 'Providers') && property_exists($channel->Providers, 'Provider')) {
 					// Convert each raw Product into a formatted object
 					$raw_products = $channel->Providers->Provider->Products->Product;
 					$raw_products = !is_array($raw_products) ? [$raw_products] : $raw_products;

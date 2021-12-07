@@ -20,7 +20,8 @@
  * @subpackage TXGB/includes
  * @author     Tourism Exchange Great Britain <hello@txgb.co.uk>
  */
-class TXGB_Deactivator {
+class TXGB_Deactivator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,7 +30,8 @@ class TXGB_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate() {
+	public static function deactivate()
+	{
 
 		// Run our deactivation tasks
 		self::unregister_post_types();
@@ -37,32 +39,31 @@ class TXGB_Deactivator {
 
 		// Flush the URL rules to update
 		flush_rewrite_rules();
-
 	}
 
-	protected static function unregister_post_types() {
+	protected static function unregister_post_types()
+	{
 
 		// Load our Custom Post Type configuration
-		require_once plugin_dir_path( __FILE__ ) . '/class-txgb-activator.php';
-		$post_types = TXGB_Activator::post_type_configuration();
+		require_once plugin_dir_path(__FILE__) . '/class-txgb-types.php';
+		$post_types = TXGB_Types::post_type_configuration();
 
 		// Loop each Custom Post Type and unregister it
-		foreach ( $post_types as $post_type => $config ) {
-			unregister_post_type( $post_type );
+		foreach ($post_types as $post_type => $config) {
+			unregister_post_type($post_type);
 		}
-
 	}
 
-	protected static function unregister_taxonomies() {
+	protected static function unregister_taxonomies()
+	{
 
 		// Load our Custom Taxonomy configuration
-		require_once plugin_dir_path( __FILE__ ) . '/class-txgb-activator.php';
-		$taxonomies = TXGB_Activator::taxonomy_configuration();
+		require_once plugin_dir_path(__FILE__) . '/class-txgb-types.php';
+		$taxonomies = TXGB_Types::taxonomy_configuration();
 
 		// Loop each Custom Taxonomy and unregister it
-		foreach ( $taxonomies as $taxonomy => $config ) {
-			unregister_taxonomy( $taxonomy );
+		foreach ($taxonomies as $taxonomy => $config) {
+			unregister_taxonomy($taxonomy);
 		}
-
 	}
 }
