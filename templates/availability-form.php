@@ -85,13 +85,13 @@ $form_action = get_post_type_archive_link('txgb_venue');
 			<div>
 				<label class="txgb__venue-search__label">From</label>
 
-				<input name="starts_at" type="date" value="<?php echo $starts_at ?>" min="<?php echo $min_date ?>" />
+				<input name="starts_at" type="date" value="<?php echo $starts_at ?>" min="<?php echo $min_date ?>" pattern="\d{4}-\d{2}-\d{2}" />
 			</div>
 
 			<div>
 				<label class="txgb__venue-search__label">To</label>
 
-				<input type="date" name="ends_at" value="<?php echo $ends_at ?>" min="<?php echo $min_date ?>" />
+				<input type="date" name="ends_at" value="<?php echo $ends_at ?>" min="<?php echo $min_date ?>" pattern="\d{4}-\d{2}-\d{2}" />
 			</div>
 		</div>
 
