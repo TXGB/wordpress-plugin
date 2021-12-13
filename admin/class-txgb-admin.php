@@ -203,7 +203,7 @@ class TXGB_Admin
 					$imported_count++;
 
 					// Initialise Product ID cache
-					// $this->initialise_service_product_cache($service);
+					$this->get_service_products($service->id);
 				}
 			}
 			include(plugin_dir_path(__FILE__) . 'partials/txgb-admin-import-end.php');

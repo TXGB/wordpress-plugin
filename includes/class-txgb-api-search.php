@@ -87,7 +87,7 @@ class TXGB_API_Search extends TXGB_API
 
 				foreach ($raw_products as $raw_product) {
 					// Check the owning Service before adding to the list
-					if (array_key_exists($raw_product->id, $mapping['by_obx_id'])) {
+					if (is_array($mapping['by_obx_id']) && array_key_exists($raw_product->id, $mapping['by_obx_id'])) {
 						$cached_product = txgb_get_product_cache($mapping['by_obx_id'][$raw_product->id]);
 
 						$cached_product->setAvailabilityFromProvider($raw_product->Availability);
