@@ -193,7 +193,7 @@ class TXGB_Admin
 						'provider_id'          => $service->provider->id,
 						'category'             => $service->categories[0],
 						'provider_short_name'  => $service->provider->short_name,
-						'last_product_sync'    => null,
+						'last_product_sync'    => '',
 					],
 					'tax_input' => ['txgb_venue_type' => $terms],
 				];
@@ -206,6 +206,12 @@ class TXGB_Admin
 					$this->get_service_products($service->id);
 				}
 			}
+
+			// Run Provider Product lookup for imported caches
+			if ($imported_count > 0) {
+				$this->handle_service_product_sync();
+			}
+
 			include(plugin_dir_path(__FILE__) . 'partials/txgb-admin-import-end.php');
 		} else {
 			wp_die(__('Invalid nonce specified', $this->plugin_name), __('Error', $this->plugin_name), array(
@@ -257,15 +263,15 @@ class TXGB_Admin
 		$end_of_day = new DateTime($now->format('Y-m-d') . ' 23:59:59');
 
 		// Services that are running stale (null matches against the condition)
-		$services = get_posts([
+		$query = new WP_Query([
 			'post_type'     => 'txgb_venue',
 			'post_status'   => ['publish', 'pending', 'draft', 'future', 'private'],
 			'meta_query' => [
 				'relation' => 'OR',
 				[
 					'key' => 'last_product_sync',
-					'compare' => 'IN',
-					'value' => ['null', null, ''],
+					'compare' => '=',
+					'value' => '',
 				],
 				[
 					'key' => 'last_product_sync',
@@ -276,6 +282,8 @@ class TXGB_Admin
 			],
 			'numberposts' => -1,
 		]);
+
+		$services = $query->posts;
 		$service_id_to_post_ids = [];
 
 		$credentials = txgb_get_distributor_credentials();
