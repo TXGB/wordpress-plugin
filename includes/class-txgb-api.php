@@ -68,11 +68,18 @@ class TXGB_API
 			$this->wsdl = $wsdl;
 		}
 
+		$should_trace = false;
+		if (defined('TXGB_TRACE_CALLS')) {
+			$should_trace = boolval(TXGB_TRACE_CALLS);
+		} elseif (defined('TXGB_IN_PRODUCTION')) {
+			$should_trace = !boolval(TXGB_IN_PRODUCTION);
+		}
+
 		// Instantiate the client
 		$options = [
 			'soap_version' => SOAP_1_2,
 			'login'        => $this->short_name,
-			'trace' => true,
+			'trace'        => $should_trace,
 		];
 
 		// Nesting the "if" to prevent Intelephense open issue: https://github.com/bmewburn/vscode-intelephense/issues/952
@@ -98,5 +105,15 @@ class TXGB_API
 		$response = $this->client->$function($args);
 
 		return $response;
+	}
+
+	public function getLastRequest()
+	{
+		return $this->client->__getLastRequest();
+	}
+
+	public function getLastResponse()
+	{
+		return $this->client->__getLastResponse();
 	}
 }
