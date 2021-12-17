@@ -4,7 +4,7 @@ Donate link: https://www.txgb.co.uk/
 Tags: txgb, travel
 Requires at least: 5.8.0
 Tested up to: 5.8.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

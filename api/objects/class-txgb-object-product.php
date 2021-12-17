@@ -178,7 +178,7 @@ class TXGB_Object_Product
 						'Products' => array(
 							(object) array(
 								'ProductId'  => $this->id,
-								'TotalPrice' => $this->total_price->raw / 100,
+								'TotalPrice' => $this->total_price->raw,
 								'Commence'   => $this->starts_at->format('Y-m-d H:i:s'),
 								'Conclude'   => $this->ends_at->format('Y-m-d H:i:s'),
 								'Pax'        => (object)array(
