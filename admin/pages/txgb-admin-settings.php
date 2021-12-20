@@ -119,7 +119,7 @@ class TXGB_Admin_Settings
 			]);
 
 			foreach ($posts as $post) {
-				update_post_meta($post->ID, 'last_product_sync', 'null');
+				update_post_meta($post->ID, 'last_product_sync', '');
 			}
 
 			do_action('admin_service_product_sync');
