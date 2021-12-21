@@ -179,8 +179,8 @@ class TXGB_Object_Product
 							(object) array(
 								'ProductId'  => $this->id,
 								'TotalPrice' => $this->total_price->raw,
-								'Commence'   => $this->starts_at->format('Y-m-d H:i:s'),
-								'Conclude'   => $this->ends_at->format('Y-m-d H:i:s'),
+								'Commence'   => $this->starts_at->format(DateTime::ATOM),
+								'Conclude'   => $this->ends_at->format(DateTime::ATOM),
 								'Pax'        => (object)array(
 									'Adults'   => $adults,
 									'Children' => $children,
@@ -207,7 +207,7 @@ class TXGB_Object_Product
 				?>
 						<div class="txgb__availability-product__booking_action">
 							<span type="submit" class="txgb__availability-product__book-button txgb__availability-product__book-button--disabled">
-								<time class="txgb__availability-product__book-button__date" datetime="<?php echo $this->starts_at->format(DateTimeInterface::W3C) ?>">
+								<time class="txgb__availability-product__book-button__date" datetime="<?php echo $daily_rate->date->format(DateTime::ATOM) ?>">
 									<?php echo $daily_rate->date->format('M jS H:i:s') ?>
 								</time>
 								<span class="txgb__availability-product__book-button__text">Unavailable</span>
@@ -216,15 +216,15 @@ class TXGB_Object_Product
 					<?php
 					else :
 						$starts_at = $daily_rate->date;
-						$ends_at = (new DateTime($starts_at->format('Y-m-d H:i:s')))->add(new DateInterval('P1D'))->format('Y-m-d H:i:s');
+						$ends_at = (new DateTime($starts_at->format(DateTime::W3C)))->add(new DateInterval('P1D'));
 						$booking_config = json_encode(
 							array(
 								'Products' => array(
 									(object) array(
 										'ProductId'  => $this->id,
 										'TotalPrice' => $daily_rate->rate->value / 100,
-										'Commence'   => $starts_at->format('Y-m-d H:i:s'),
-										'Conclude'   => $ends_at,
+										'Commence'   => $starts_at->format(DateTime::ATOM),
+										'Conclude'   => $ends_at->format(DateTime::ATOM),
 										'Pax'        => (object)array(
 											'Adults'   => $adults,
 											'Children' => $children,
@@ -240,7 +240,7 @@ class TXGB_Object_Product
 							<input type="hidden" name="Data" value="<?php echo htmlspecialchars($booking_config); ?>" />
 
 							<button type="submit" class="txgb__availability-product__book-button">
-								<time class="txgb__availability-product__book-button__date" datetime="<?php echo $starts_at->format(DateTimeInterface::W3C) ?>">
+								<time class="txgb__availability-product__book-button__date" datetime="<?php echo $daily_rate->date->format(DateTime::ATOM) ?>">
 									<?php echo $daily_rate->date->format('M jS H:i') ?>
 								</time>
 								<span class="txgb__availability-product__book-button__text">Book Now</span>
