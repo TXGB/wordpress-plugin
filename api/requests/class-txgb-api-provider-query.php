@@ -63,6 +63,9 @@ class TXGB_API_Provider_Query implements TXGB_API_Request
 				'SearchGroup' => [
 					'SearchCriteriaShortName' => ['exact' => $this->provider_name],
 				],
+				'SearchCriteriaIncludeTestProviders' => [
+					'value' => true,
+				],
 			],
 		];
 
@@ -73,12 +76,6 @@ class TXGB_API_Provider_Query implements TXGB_API_Request
 				'IncludeProductRates' => ['include' => true],
 				'IncludeProductImages' => ['include' => true],
 				'IncludeProductMarketingDetails' => ['include' => true],
-			];
-		}
-
-		if (!txgb_is_production()) {
-			$args['Query']['SearchCriteriaInclude'] = [
-				'TestProviders' => true,
 			];
 		}
 
