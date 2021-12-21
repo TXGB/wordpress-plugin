@@ -119,6 +119,11 @@ class TXGB_Object_Product
 		return $self;
 	}
 
+	public function isAccommodation()
+	{
+		return substr($this->category, -13) == 'accommodation';
+	}
+
 	public function setAvailabilityFromProvider($availability)
 	{
 		$type = property_exists($availability, 'Days') ? 'days' : 'nights';
@@ -172,7 +177,7 @@ class TXGB_Object_Product
 ?>
 		<div class="txgb__availability-product__booking_actions">
 			<?php
-			if ($this->category == 'accommodation') :
+			if ($this->isAccommodation()) :
 				$booking_config = json_encode(
 					array(
 						'Products' => array(
