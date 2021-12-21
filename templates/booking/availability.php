@@ -14,6 +14,7 @@
 			foreach ($products as $product) :
 				switch ($product->category) {
 					case 'accommodation':
+					case 'nonservicedaccommodation':
 						include plugin_dir_path(dirname(__FILE__)) . 'products/accommodation.php';
 						break;
 
