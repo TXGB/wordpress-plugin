@@ -124,9 +124,15 @@ class TXGB_Object_Service
 
 	protected static function parse_geocoding(&$self, $rawGeocode)
 	{
+		$geocode = is_array($rawGeocode->Geocode) ? $rawGeocode->Geocode[0] : $rawGeocode->Geocode;
+
 		$self->geocoding = [
-			'latitude' => $rawGeocode->Geocode->Geocode->Latitude,
-			'longitude' => $rawGeocode->Geocode->Geocode->Longitude,
+			'latitude' => !property_exists($geocode, 'Geocode')
+				? null
+				: $geocode->Geocode->Latitude,
+			'longitude' => !property_exists($geocode, 'Geocode')
+				? null
+				: $geocode->Geocode->Longitude,
 		];
 	}
 
