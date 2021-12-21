@@ -114,6 +114,9 @@ class TXGB_API_Product_Availability_Query implements TXGB_API_Request
 						],
 					]
 				],
+				'SearchCriteriaInclude' => [
+					'TestProviders' => true,
+				],
 			],
 		];
 
@@ -144,12 +147,6 @@ class TXGB_API_Product_Availability_Query implements TXGB_API_Request
 		}
 
 		$args['Query']['SearchCriteria'][$key] = $value;
-
-		if (!txgb_is_production()) {
-			$args['Query']['SearchCriteriaInclude'] = [
-				'TestProviders' => true,
-			];
-		}
 
 		return $args;
 	}
