@@ -77,21 +77,19 @@ class TXGB_API_Search extends TXGB_API
 				$mapping = txgb_get_product_mapping($for_service_id);
 
 				// Convert each raw Product into a formatted object
-				if (!property_exists($response->Channels->PA_DistributionChannelRSType->Providers, 'Provider')) {
-					txgb_handle_exception(new Exception('Fatal: No Provider returned on API availability call.'));
-				}
+				if (property_exists($response->Channels->PA_DistributionChannelRSType->Providers, 'Provider')) {
+					$raw_provider = $response->Channels->PA_DistributionChannelRSType->Providers->Provider;
+					$raw_products = $raw_provider->ProductGroups->ProductGroup->Products->Product;
+					$raw_products = !is_array($raw_products) ? [$raw_products] : $raw_products;
 
-				$raw_provider = $response->Channels->PA_DistributionChannelRSType->Providers->Provider;
-				$raw_products = $raw_provider->ProductGroups->ProductGroup->Products->Product;
-				$raw_products = !is_array($raw_products) ? [$raw_products] : $raw_products;
+					foreach ($raw_products as $raw_product) {
+						// Check the owning Service before adding to the list
+						if (is_array($mapping['by_obx_id']) && array_key_exists($raw_product->id, $mapping['by_obx_id'])) {
+							$cached_product = txgb_get_product_cache($mapping['by_obx_id'][$raw_product->id]);
 
-				foreach ($raw_products as $raw_product) {
-					// Check the owning Service before adding to the list
-					if (is_array($mapping['by_obx_id']) && array_key_exists($raw_product->id, $mapping['by_obx_id'])) {
-						$cached_product = txgb_get_product_cache($mapping['by_obx_id'][$raw_product->id]);
-
-						$cached_product->setAvailabilityFromProvider($raw_product->Availability);
-						$products[] = $cached_product;
+							$cached_product->setAvailabilityFromProvider($raw_product->Availability);
+							$products[] = $cached_product;
+						}
 					}
 				}
 			}
