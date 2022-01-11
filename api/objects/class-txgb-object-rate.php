@@ -13,6 +13,7 @@
 class TXGB_Object_Rate
 {
 	public $raw = 0.0;
+	public $value = 0.0;
 	public $formatted = '&pound;0.00';
 
 	static function make($raw_value, $currency = 'GBP')

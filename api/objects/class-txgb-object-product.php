@@ -166,7 +166,7 @@ class TXGB_Object_Product
 		$error_url = $error_page_id ? get_page_link($error_page_id) : home_url();
 
 		$payment_url_params = array(
-			'exl_dsn' => $shortname,  // Provider short name
+			'exl_dn'  => $shortname,  // Provider short name
 			'exl_bku' => $return_url, // Back URL
 			'exl_eu'  => $error_url,  // Error return URL
 			'exl_lng' => 'en-GB',     // Language & currency settings
@@ -184,8 +184,8 @@ class TXGB_Object_Product
 							(object) array(
 								'ProductId'  => $this->id,
 								'TotalPrice' => $this->total_price->raw,
-								'Commence'   => $this->starts_at->format(DateTime::ATOM),
-								'Conclude'   => $this->ends_at->format(DateTime::ATOM),
+								'Commence'   => $this->starts_at->format('Y-m-d\TH:i:s'),
+								'Conclude'   => $this->ends_at->format('Y-m-d\TH:i:s'),
 								'Pax'        => (object)array(
 									'Adults'   => $adults,
 									'Children' => $children,
@@ -227,9 +227,9 @@ class TXGB_Object_Product
 								'Products' => array(
 									(object) array(
 										'ProductId'  => $this->id,
-										'TotalPrice' => $daily_rate->rate->value / 100,
-										'Commence'   => $starts_at->format(DateTime::ATOM),
-										'Conclude'   => $ends_at->format(DateTime::ATOM),
+										'TotalPrice' => $daily_rate->rate->raw,
+										'Commence'   => $starts_at->format('Y-m-d\TH:i:s'),
+										'Conclude'   => $ends_at->format('Y-m-d\TH:i:s'),
 										'Pax'        => (object)array(
 											'Adults'   => $adults,
 											'Children' => $children,
